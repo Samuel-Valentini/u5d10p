@@ -74,8 +74,5 @@ public class Booking {
     public LocalDate getSubmissionDate() {
         return submissionDate;
     }
-
-    public void setSubmissionDate(LocalDate submissionDate) {
-        this.submissionDate = submissionDate;
-    }
+    
 }
