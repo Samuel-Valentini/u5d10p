@@ -15,29 +15,29 @@ public class Employee {
     @Column(name = "employee_id", nullable = false, updatable = false)
     private Long employeeId;
 
-    @NotBlank
-    @Size(max = 255)
+    @NotBlank(message = "Field is required")
+    @Size(max = 255, message = "Field must be at most 255 characters long")
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
-    @NotBlank
-    @Size(max = 255)
+    @NotBlank(message = "Field is required")
+    @Size(max = 255, message = "Field must be at most 255 characters long")
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @NotBlank
-    @Size(max = 255)
+    @NotBlank(message = "Field is required")
+    @Size(max = 255, message = "Field must be at most 255 characters long")
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @NotBlank
+    @NotBlank(message = "Field is required")
     @Email
-    @Size(max = 255)
+    @Size(max = 255, message = "Field must be at most 255 characters long")
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @NotBlank
-    @Size(max = 255)
+    @NotBlank(message = "Field is required")
+    @Size(max = 255, message = "Field must be at most 255 characters long")
     @URL
     @Column(name = "profile_picture", nullable = false)
     private String profilePicture;

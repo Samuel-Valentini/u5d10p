@@ -17,18 +17,18 @@ public class Trip {
     @Column(name = "trip_id", nullable = false, updatable = false)
     private Long tripId;
 
-    @NotBlank
-    @Size(max = 255)
+    @NotBlank(message = "Field is required")
+    @Size(max = 255, message = "Field must be at most 255 characters long")
     @Column(name = "destination", nullable = false)
     private String destination;
 
-    @NotNull
+    @NotNull(message = "Field is required")
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private TripStatus status;
 
-    @NotNull
-    @FutureOrPresent
+    @NotNull(message = "Field is required")
+    @FutureOrPresent(message = "Trip date cannot be in the past.")
     @Column(name = "trip_date", nullable = false)
     private LocalDate tripDate;
 

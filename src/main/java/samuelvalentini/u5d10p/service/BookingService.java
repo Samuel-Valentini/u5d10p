@@ -1,5 +1,9 @@
 package samuelvalentini.u5d10p.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import samuelvalentini.u5d10p.dto.BookingDTO;
 import samuelvalentini.u5d10p.entity.Booking;
@@ -37,8 +41,9 @@ public class BookingService {
         return bookingRepository.save(booking);
     }
 
-    public List<Booking> findAll() {
-        return bookingRepository.findAll();
+    public Page<Booking> findAll(int page) {
+        Pageable pageable = PageRequest.of(page, 10, Sort.by("trip.tripDate").and(Sort.by("submissionDate")));
+        return bookingRepository.findAll(pageable);
     }
 
     public Booking findById(Long bookingId) {

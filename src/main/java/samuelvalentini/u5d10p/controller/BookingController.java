@@ -1,5 +1,6 @@
 package samuelvalentini.u5d10p.controller;
 
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -36,8 +37,19 @@ public class BookingController {
     }
 
     @GetMapping({"", "/"})
-    public List<Booking> getAllBookings() {
-        return bookingService.findAll();
+    public Page<Booking> getAllBookings(@RequestParam(defaultValue = "0") String page) {
+        int pageNumber;
+        try {
+            pageNumber = Integer.parseInt(page);
+        } catch (NumberFormatException e) {
+            throw new BadRequestException("The page index must be a number.");
+        }
+
+        if (pageNumber < 0) {
+            throw new BadRequestException("The page index must be 0 or greater.");
+        }
+
+        return bookingService.findAll(pageNumber);
     }
 
     @GetMapping("/{bookingId}")

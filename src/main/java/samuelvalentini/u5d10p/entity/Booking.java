@@ -24,11 +24,11 @@ public class Booking {
     @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
 
-    @Size(max = 255)
+    @Size(max = 255, message = "Field must be at most 255 characters long")
     @Column(name = "notes_preferences")
     private String notesPreferences;
 
-    @NotNull
+    @NotNull(message = "Field is required")
     @PastOrPresent
     @Column(name = "submission_date", nullable = false)
     private LocalDate submissionDate;
