@@ -45,7 +45,7 @@ public class ErrorHandler {
     public ErrorPayload handleGenericException(Exception ex) {
 
         log.error("Errore interno: ", ex);
-        return new ErrorPayload("Errore interno del server", LocalDateTime.now());
+        return new ErrorPayload("Server Internal Error", LocalDateTime.now());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
