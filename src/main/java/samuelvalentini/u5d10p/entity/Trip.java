@@ -1,7 +1,6 @@
 package samuelvalentini.u5d10p.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -28,7 +27,6 @@ public class Trip {
     private TripStatus status;
 
     @NotNull(message = "Field is required")
-    @FutureOrPresent(message = "Trip date cannot be in the past.")
     @Column(name = "trip_date", nullable = false)
     private LocalDate tripDate;
 
