@@ -1,0 +1,71 @@
+package samuelvalentini.u5d10p.entity;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import samuelvalentini.u5d10p.enumeration.TripStatus;
+
+import java.time.LocalDate;
+
+@Entity
+@Table(name = "trips")
+public class Trip {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "trip_id", nullable = false, updatable = false)
+    private Long tripId;
+
+    @NotBlank
+    @Size(max = 255)
+    @Column(name = "destination", nullable = false)
+    private String destination;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private TripStatus status;
+
+    @NotNull
+    @FutureOrPresent
+    @Column(name = "trip_date", nullable = false)
+    private LocalDate tripDate;
+
+    public Trip(String destination, TripStatus status, LocalDate tripDate) {
+        this.destination = destination;
+        this.status = status;
+        this.tripDate = tripDate;
+    }
+
+    protected Trip() {
+    }
+
+    public Long getTripId() {
+        return tripId;
+    }
+
+    public TripStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(TripStatus status) {
+        this.status = status;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    public LocalDate getTripDate() {
+        return tripDate;
+    }
+
+    public void setTripDate(LocalDate tripDate) {
+        this.tripDate = tripDate;
+    }
+}
